@@ -26,3 +26,32 @@
 main {
     min-height: 90vh;
 }
+
+footer {
+    height: 10vh;
+}
+
+#iconos {
+    width: 15rem;
+    height: 5rem;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+form label {
+    width: 30vw;
+}
+
+.caja {
+    height: 5rem;
+}
+
+table {
+    width: 80vw !important;
+}
+
+td {
+    height: 2rem;
+}
