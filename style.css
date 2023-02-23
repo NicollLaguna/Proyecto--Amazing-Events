@@ -1,0 +1,28 @@
+* { 
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.carousel-control-next {
+    height: 30vh;
+}
+
+.carousel img {
+    height: 30vh;
+}
+
+.boton {
+    color: white;
+    background-color:  #dc046c ;
+}
+
+.boton:hover {
+    color: black;
+    background-color: white;
+}
+
+
+main {
+    min-height: 90vh;
+}
