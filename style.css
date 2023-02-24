@@ -41,7 +41,7 @@ p {
 }
 
 form label {
-    width: 30vw;
+    width: 40vw;
 }
 
 .caja {
@@ -54,4 +54,15 @@ table {
 
 td {
     height: 2rem;
+}
+
+.navbar-collapse {
+    flex-grow: 0 !important;
+}
+
+@media only screen and (max-width: 767px){
+     .boton {
+        background-color: transparent;
+        color: white;
+     }
 }
