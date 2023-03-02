@@ -1,12 +1,14 @@
 const $main = document.getElementById("main")
 const cartas = data.events
 function crearCarta (eventos){
-    return ` <div class="card m-1" style="width: 18rem;">
-    <img src="${eventos.image}" class="card-img-top h-100" alt="Imagen de ${eventos.name}">
-    <div class="card-body p-3">
+    return ` <div class="card" style="width: 18rem;">
+    <img src="${eventos.image}" class="card-img-top cartita" alt="Imagen de ${eventos.name}">
+    <div class="card-body p-3 d-flex flex-column justify-content-between">
+        <div>
         <h5 class="card-title">${eventos.name}</h5>
         <p class="card-text">${eventos.description}.</p>
-        <div class="d-flex justify-content-between mt-5 align-items-center ">
+        </div>
+        <div class="d-flex justify-content-between mt-4 align-items-center ">
             <p>Price: $${eventos.price}USD</p>
             <a href="./carts.html" class="btn btn-primary">See More</a>
         </div>

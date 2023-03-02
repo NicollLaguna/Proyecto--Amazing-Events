@@ -64,6 +64,10 @@ td {
     flex-grow: 0 !important;
 }
 
+.cartita {
+    height: 180px;
+}
+
 @media only screen and (max-width: 767px){
      .boton {
         background-color: transparent;
