@@ -1,7 +1,7 @@
 const $main = document.getElementById("main")
 const cartas = data.events
 function crearCarta (eventos){
-    return ` <div class="card" style="width: 18rem;">
+    return ` <div class="card m-1" style="width: 18rem;">
     <img src="${eventos.image}" class="card-img-top h-100" alt="Imagen de ${eventos.name}">
     <div class="card-body p-3">
         <h5 class="card-title">${eventos.name}</h5>
@@ -22,13 +22,26 @@ function ponerCartas( listaCartas, elemento ){
     elemento.innerHTML = template
 } 
 
-
-
 function filtrarCartas (lista){
+    let eventspast = []
+    const presente = data.currentDate
+    
+    for ( let filtrado of lista){
+        if (filtrado.date < presente){
+            eventspast.push(filtrado) 
+    }}
+    return eventspast
+}
+
+const pasado= filtrarCartas(cartas)
+ponerCartas(pasado ,$main)
+
+
+/* function filtrarCartas (lista){
     const presente = data.currentDate
     let filtrado= lista.filter(carta=> carta.date < presente )
     return filtrado
 }
 const eventspast= filtrarCartas(cartas)
 
-ponerCartas(eventspast,$main)
+ponerCartas(eventspast,$main) */
