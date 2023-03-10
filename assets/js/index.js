@@ -8,6 +8,9 @@ ponerCartas(cartas, $main)
 $cajacheck.addEventListener('change', e => 
   ponerCartas(filtrarChecks(cartas),$main)
 ) 
+$cajacheck.addEventListener('change', e=> 
+ponerCartas(filtroCruzado(),$main)
+)
 
 function filtrarChecks (listaCartas){
     let elegidas=[]
@@ -69,5 +72,5 @@ function filtroSearch(values){
 filtroSearch(cartas)
 
 function filtroCruzado(){
-    return filtrarChecks(filtroSearch(cartas))
+    return filtrarChecks(filtroSearch(cartas,$main.value))
 }
