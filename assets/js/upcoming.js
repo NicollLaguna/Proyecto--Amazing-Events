@@ -34,7 +34,7 @@ function ponerCartas( listaCartas, elemento ){
         elemento.innerHTML = template   }
     
 } 
-ponerCartas(future, $main)
+ponerCartas (future, $main)
 function mensaje(){
     return `<h2>Evento no disponible</h2>`
 }

@@ -7,7 +7,7 @@ const id = params.get("id")
 
 let carta = cartas.find(element => element._id === id)
 
-function crearCarta(obj) {
+function crearCarta (obj) {
     return `<div class="d-flex justify-content-center align-items-center pt-5">
     <div class="card mb-3" style="max-width: 640px;">
       <div class="row g-0 ">

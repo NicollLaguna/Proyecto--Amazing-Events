@@ -24,7 +24,7 @@ function filtrarChecks (listaCartas){
         return listaCartas.filter(carta =>elegidas.includes(carta.category))
     }
 }
-filtrarChecks(cartas)
+filtrarChecks (cartas)
 
 function crearCarta(eventos) {
     return ` <div class="card" style="width: 18rem;">

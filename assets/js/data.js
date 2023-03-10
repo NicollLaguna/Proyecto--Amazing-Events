@@ -17,7 +17,7 @@ const data = {
       },
       {
         _id: "639c723b992482e5f2834beb",
-        name: "Korean style",
+        name:"Korean style",
         image: "https://i.postimg.cc/ZmD3Xf57/Korean-style.jpg",
         date: "2022-08-12",
         description:

@@ -24,7 +24,7 @@ function crearCarta (eventos){
 </div>` 
 }
 
-function ponerCartas( listaCartas, elemento ){
+function ponerCartas ( listaCartas, elemento ){
     let template = ''
     if (listaCartas.length===0){
         elemento.innerHTML =  mensaje()
