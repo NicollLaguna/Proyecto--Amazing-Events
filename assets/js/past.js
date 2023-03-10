@@ -51,6 +51,7 @@ function filtrarChecks (listaCartas){
         return listaCartas.filter(carta =>elegidas.includes(carta.category))
     }
 }
+
 filtrarChecks(eventspast)
 
 $buscador.addEventListener("input", e =>

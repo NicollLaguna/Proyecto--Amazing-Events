@@ -5,9 +5,6 @@ const $buscador = document.getElementById('buscador')
 
 ponerCartas(cartas, $main)
 
-$cajacheck.addEventListener('change', e => 
-  ponerCartas(filtrarChecks(cartas),$main)
-) 
 $cajacheck.addEventListener('change', e=> 
 ponerCartas(filtroCruzado(),$main)
 )
@@ -48,7 +45,7 @@ function ponerCartas( listaCartas, elemento ){
         elemento.innerHTML =  mensaje()
     }
     else {listaCartas.forEach(carta => template+=crearCarta(carta))
-        elemento.innerHTML = template   }
+        elemento.innerHTML = template }
 } 
 ponerCartas (cartas,$main)
 
