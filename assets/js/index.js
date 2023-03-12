@@ -69,5 +69,5 @@ function filtroSearch(values){
 filtroSearch(cartas)
 
 function filtroCruzado(){
-    return filtrarChecks(filtroSearch(cartas,$main.value))
+    return filtrarChecks(filtroSearch(cartas))
 }

@@ -39,9 +39,9 @@ function mensaje(){
     return `<h2>Evento no disponible</h2>`
 }
 
-$cajacheck.addEventListener('change', e => 
-  ponerCartas(filtrarChecks(future),$main)
-) 
+$cajacheck.addEventListener('change', e=> 
+ponerCartas(filtroCruzado(),$main)
+)
 function filtrarChecks (listaCartas){
     let elegidas=[]
     const checkboxCheck = document.querySelectorAll('input[type="checkbox"]:checked')

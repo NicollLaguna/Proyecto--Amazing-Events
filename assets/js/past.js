@@ -35,9 +35,9 @@ function ponerCartas ( listaCartas, elemento ){
 } 
 ponerCartas(eventspast,$main) 
 
-$cajacheck.addEventListener('change', e => 
-  ponerCartas(filtrarChecks(eventspast),$main)
-) 
+$cajacheck.addEventListener('change', e=> 
+ponerCartas(filtroCruzado(),$main)
+)
 
 function filtrarChecks (listaCartas){
     let elegidas=[]
