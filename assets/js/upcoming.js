@@ -1,15 +1,35 @@
 const $main = document.getElementById("main")
-const cartas = data.events
 const $cajacheck = document.getElementById("cajacheck")
 const $buscador = document.getElementById('buscador')
 
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(Response => Response.json())
+    .then(cartas => {
+        function filtrarCartas (lista){
+            const presente = cartas.currentDate
+            let filtrado= lista.filter(carta=> carta.date > presente )
+            return filtrado
+        }
+        const future= filtrarCartas(cartas.events) 
+        ponerCartas(future, $main)
+        $cajacheck.addEventListener('change', e =>
+            ponerCartas(filtroCruzado(future), $main))
+        $buscador.addEventListener("input", e =>
+            ponerCartas(filtroCruzado(future), $main))
+        const listCategory = Array.from(new Set(cartas.events.map(carta => carta.category)));
+        const categories = listCategory.reduce((acc, category) => {
+            return acc += `<div class="form-check me-4">
+                <input class="form-check-input" type="checkbox" value="${category}" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">${category}</label></div>`
+        }, '')
 
-function filtrarCartas (lista){
-    const presente = data.currentDate
-    let filtrado= lista.filter(carta=> carta.date > presente )
-    return filtrado
-}
-const future= filtrarCartas(cartas) 
+        $cajacheck.innerHTML += categories
+        
+    })
+   .catch(error => console.log(error))
+
+
+
 
 function crearCarta (eventos){
     return ` <div class="card m-1" style="width: 18rem;">
@@ -34,14 +54,11 @@ function ponerCartas( listaCartas, elemento ){
         elemento.innerHTML = template   }
     
 } 
-ponerCartas (future, $main)
+
 function mensaje(){
     return `<h2>Evento no disponible</h2>`
 }
 
-$cajacheck.addEventListener('change', e=> 
-ponerCartas(filtroCruzado(),$main)
-)
 function filtrarChecks (listaCartas){
     let elegidas=[]
     const checkboxCheck = document.querySelectorAll('input[type="checkbox"]:checked')
@@ -54,10 +71,6 @@ function filtrarChecks (listaCartas){
         return listaCartas.filter(carta =>elegidas.includes(carta.category))
     }
 }
-filtrarChecks(future)
-
-$buscador.addEventListener("input", e =>
-ponerCartas(filtroCruzado(future), $main));
 
 function filtroSearch(values){
     const search= $buscador.value.toLowerCase()
@@ -70,6 +83,6 @@ function filtroSearch(values){
     return searchFiltrado;
 }
 
-function filtroCruzado(){
+function filtroCruzado(future){
     return filtrarChecks(filtroSearch(future))
 }

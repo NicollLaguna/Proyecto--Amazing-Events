@@ -1,27 +1,39 @@
 const $main = document.getElementById("main")
-const cartas = data.events
 const $cajacheck = document.getElementById("cajacheck")
 const $buscador = document.getElementById('buscador')
 
-ponerCartas(cartas, $main)
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(Response => Response.json())
+    .then(cartas => {
+        ponerCartas(cartas.events, $main)
+        $cajacheck.addEventListener('change', e =>
+            ponerCartas(filtroCruzado(cartas.events), $main))
+        $buscador.addEventListener("input", e =>
+            ponerCartas(filtroCruzado(cartas.events), $main))
+        const listCategory = Array.from(new Set(cartas.events.map(carta => carta.category)));
+        const categories = listCategory.reduce((acc, category) => {
+            return acc += `<div class="form-check me-4">
+                <input class="form-check-input" type="checkbox" value="${category}" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">${category}</label></div>`
+        }, '')
+        $cajacheck.innerHTML += categories
+    })
+    .catch(error => console.log(error))
 
-$cajacheck.addEventListener('change', e=> 
-ponerCartas(filtroCruzado(),$main)
-)
 
-function filtrarChecks (listaCartas){
-    let elegidas=[]
+function filtrarChecks(listaCartas) {
+    let elegidas = []
     const checkboxCheck = document.querySelectorAll('input[type="checkbox"]:checked')
-    elegidas= Array.from(checkboxCheck).map(carta=>carta.value)
-    
-    if(elegidas.length ===0){
+    elegidas = Array.from(checkboxCheck).map(carta => carta.value)
+
+    if (elegidas.length === 0) {
         return listaCartas
     }
-    else{
-        return listaCartas.filter(carta =>elegidas.includes(carta.category))
+    else {
+        return listaCartas.filter(carta => elegidas.includes(carta.category))
     }
 }
-filtrarChecks (cartas)
+
 
 function crearCarta(eventos) {
     return ` <div class="card" style="width: 18rem;">
@@ -39,35 +51,36 @@ function crearCarta(eventos) {
     </div>`
 }
 
-function ponerCartas( listaCartas, elemento ){
+function ponerCartas(listaCartas, elemento) {
     let template = ''
-    if (listaCartas.length===0){
-        elemento.innerHTML =  mensaje()
+    if (listaCartas.length === 0) {
+        elemento.innerHTML = mensaje()
     }
-    else {listaCartas.forEach(carta => template+=crearCarta(carta))
-        elemento.innerHTML = template }
-} 
-ponerCartas (cartas,$main)
+    else {
+        listaCartas.forEach(carta => template += crearCarta(carta))
+        elemento.innerHTML = template
+    }
+}
 
-function mensaje(){
+
+function mensaje() {
     return `<h2>Evento no disponible</h2>`
 }
 
-$buscador.addEventListener("input", e =>
-ponerCartas(filtroCruzado(cartas), $main));
 
-function filtroSearch(values){
-    const search= $buscador.value.toLowerCase()
-    if (search.length === 0){
+
+function filtroSearch(values) {
+    const search = $buscador.value.toLowerCase()
+    if (search.length === 0) {
         return values;
     }
-    const searchFiltrado = values.filter(events=>{
-        return events.name.toLowerCase().includes(search)})
+    const searchFiltrado = values.filter(events => {
+        return events.name.toLowerCase().includes(search)
+    })
 
     return searchFiltrado;
 }
-filtroSearch(cartas)
 
-function filtroCruzado(){
+function filtroCruzado(cartas) {
     return filtrarChecks(filtroSearch(cartas))
 }

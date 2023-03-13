@@ -52,7 +52,14 @@ form label {
 table {
     width: 80vw !important;
 }
-
+caption {
+    caption-side: top;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: rgba(112, 106, 106, 0.64);
+    color: white;
+    text-align: center;
+}
 td {
     height: 2rem;
 }

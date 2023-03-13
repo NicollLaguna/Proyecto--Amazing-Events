@@ -1,14 +1,34 @@
 const $main = document.getElementById("main")
-const cartas = data.events
 const $cajacheck = document.getElementById("cajacheck")
 const $buscador = document.getElementById('buscador')
 
-function filtrarCartas (lista){
-    const presente = data.currentDate
-    let filtrado= lista.filter(carta=> carta.date < presente )
-    return filtrado
-}
-const eventspast= filtrarCartas(cartas)
+fetch("https://mindhub-xj03.onrender.com/api/amazing")
+    .then(Response => Response.json())
+    .then(cartas => {
+        function filtrarCartas (lista){
+            const presente = cartas.currentDate
+            let filtrado= lista.filter(carta=> carta.date < presente )
+            return filtrado
+        }
+        const eventspast= filtrarCartas(cartas.events)
+        ponerCartas(eventspast, $main)
+        $cajacheck.addEventListener('change', e =>
+            ponerCartas(filtroCruzado(eventspast), $main))
+        $buscador.addEventListener("input", e =>
+            ponerCartas(filtroCruzado(eventspast), $main))
+        const listCategory = Array.from(new Set(cartas.events.map(carta => carta.category)));
+        const categories = listCategory.reduce((acc, category) => {
+            return acc += `<div class="form-check me-4">
+                <input class="form-check-input" type="checkbox" value="${category}" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">${category}</label></div>`
+        }, '')
+
+    $cajacheck.innerHTML += categories
+
+    })
+    .catch(error => console.log(error))
+
+
 
 function crearCarta (eventos){
     return ` <div class="card m-1" style="width: 18rem;">
@@ -68,7 +88,7 @@ function filtroSearch(values){
     return searchFiltrado;
 }
 
-function filtroCruzado(){
+function filtroCruzado(eventspast){
     return filtrarChecks(filtroSearch(eventspast))
 }
 
