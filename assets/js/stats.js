@@ -78,8 +78,7 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
                     capacity: 0,
                 };
             }
-            categorias2[propiedEvent.category].price +=
-                propiedEvent.price * propiedEvent.assistance;
+            categorias2[propiedEvent.category].price += propiedEvent.price * propiedEvent.assistance;
             categorias2[propiedEvent.category].capacity += propiedEvent.capacity;
             categorias2[propiedEvent.category].assistance += propiedEvent.assistance;
         });
